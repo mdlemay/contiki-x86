@@ -71,7 +71,55 @@
 #endif
 #endif
 
-#if WEBSERVER_CONF_NANO==1
+#if WEBSERVER_CONF_NANO==0
+/* Set of features oriented towards programmatic access to webserver (instead of interactive browsing) */
+#define WEBSERVER_CONF_CONNS     5
+#define WEBSERVER_CONF_NAMESIZE 16
+#define WEBSERVER_CONF_BUFSIZE  40
+/* Short tcp timeouts allow new connections sooner */
+#define WEBSERVER_CONF_TIMEOUT  20
+/* Allow include in .shtml pages, e.g. %!: /header.html */
+#define WEBSERVER_CONF_INCLUDE   0
+/* Allow cgi in .shtml pages, e.g. %! file-stats . */
+#define WEBSERVER_CONF_CGI       1
+/* MAX_SCRIPT_NAME_LENGTH should be at least the maximum file name length+2 for %!: includes */
+#define MAX_SCRIPT_NAME_LENGTH   WEBSERVER_CONF_NAMESIZE+2
+/* Enable specific cgi's */
+#define WEBSERVER_CONF_HEADER    0
+//#define WEBSERVER_CONF_HEADER_W3C  1 //Proper header
+#define WEBSERVER_CONF_HEADER_MENU 0 //with links to other pages
+//#define WEBSERVER_CONF_HEADER_ICON 1 //with favicon
+#define WEBSERVER_CONF_LOADTIME  0  //show load time in filestats
+#define WEBSERVER_CONF_FILESTATS 0
+#define WEBSERVER_CONF_TCPSTATS  0
+#define WEBSERVER_CONF_PROCESSES 0
+#define WEBSERVER_CONF_ADDRESSES 0
+#define WEBSERVER_CONF_NEIGHBORS 0
+#define WEBSERVER_CONF_NEIGHBOR_STATUS 0
+#define WEBSERVER_CONF_ROUTES    0
+#define WEBSERVER_CONF_ROUTE_LINKS  0
+#define WEBSERVER_CONF_SENSORS   0
+#define WEBSERVER_CONF_STATISTICS   0
+#define WEBSERVER_CONF_TICTACTOE 0   //Needs passquery of at least 10 chars 
+#define WEBSERVER_CONF_AJAX      0
+//#define WEBSERVER_CONF_PASSQUERY 10
+#if WEBSERVER_CONF_PASSQUERY
+extern char httpd_query[WEBSERVER_CONF_PASSQUERY];
+#endif
+/* Enable specific file types */
+#define WEBSERVER_CONF_JPG       0
+#define WEBSERVER_CONF_PNG       0
+#define WEBSERVER_CONF_GIF       0
+#define WEBSERVER_CONF_TXT       0
+#define WEBSERVER_CONF_CSS       0
+#define WEBSERVER_CONF_BIN       0
+
+/* Log page accesses */
+#define WEBSERVER_CONF_LOG       0
+/* Include referrer in log */
+#define WEBSERVER_CONF_REFERER   0
+/*-----------------------------------------------------------------------------*/
+#elif WEBSERVER_CONF_NANO==1
 /* nano-size for constrained MCUs */
 #define WEBSERVER_CONF_CONNS     2
 #define WEBSERVER_CONF_NAMESIZE 16
